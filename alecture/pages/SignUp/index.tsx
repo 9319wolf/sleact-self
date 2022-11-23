@@ -1,4 +1,4 @@
-import useInput from '@hooks/useInput';
+// import useInput from '@hooks/useInput';
 // import fetcher from '@utils/fetcher';
 import React, { useCallback, useState, VFC } from 'react';
 // import axios from 'axios';
@@ -9,18 +9,30 @@ import { Link, Redirect } from 'react-router-dom';
 const SignUp = () => {
   // const { data, error, revalidate } = useSWR('/api/users', fetcher);
 
-  const [email, onChangeEmail] = useInput('');
-  const [nickname, onChangeNickname] = useInput('');
-  const [password, , setPassword] = useInput('');
-  const [passwordCheck, , setPasswordCheck] = useInput('');
+  const [email, setEmail] = useState('');
+  const [nickname, setNickname] = useState('');
+  const [password, , setPassword] = useState('');
+  const [passwordCheck, , setPasswordCheck] = useState('');
   const [mismatchError, setMismatchError] = useState(false);
   const [signUpError, setSignUpError] = useState('');
   const [signUpSuccess, setSignUpSuccess] = useState(false);
 
-  const onChangePassword = () => {};
+  const onChangeEmail = () => {};
+
+  const onChangeNickname = () => {};
+
+  const onChangePassword = useCallback((e) => {
+    setEmail(e.target.value);
+  }, []);
 
   const onChangePasswordCheck = () => {};
-  const onSubmit = () => {};
+
+  const onSubmit = useCallback(
+    (e) => {
+      e.preventDefault();
+    },
+    [email, nickname, password, passwordCheck],
+  );
 
   return (
     <div id="container">
